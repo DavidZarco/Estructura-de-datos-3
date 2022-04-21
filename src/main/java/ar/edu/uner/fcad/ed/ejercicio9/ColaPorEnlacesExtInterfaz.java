@@ -1,8 +1,8 @@
-package ar.edu.uner.fcad.ed.ejercicio9;
+package src.main.java.ar.edu.uner.fcad.ed.ejercicio9;
 
 public interface ColaPorEnlacesExtInterfaz <T>{
     /** Elimina de la estructura el número de elementos especificado num*/
-    public ListaEnlazadaNoOrdenada<T> multiDequeue(int num);
+    public Object multiDequeue(int num);
     /** Reemplaza todas las ocurrencias de param1 con param2 */
     public void reemplazarTodos(T param1, T param2);
     /** Devuelve la cantidad actual de elementos en la estructura. */

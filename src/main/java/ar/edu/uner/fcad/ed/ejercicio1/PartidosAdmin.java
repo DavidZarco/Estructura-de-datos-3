@@ -1,4 +1,4 @@
-package ar.edu.uner.fcad.ed.ejercicio1;
+package src.main.java.ar.edu.uner.fcad.ed.ejercicio1;
 
 import java.util.List;
 
