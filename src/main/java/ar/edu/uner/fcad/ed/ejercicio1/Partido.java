@@ -1,6 +1,7 @@
 package ar.edu.uner.fcad.ed.ejercicio1;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.Objects;
 
 /**
@@ -14,6 +15,9 @@ public class Partido {
     int golesLocal;
     int golesVisitante;
     ResultadoEnum resultado;
+
+    public Partido() {
+    }
 
     public Partido(LocalDate fecha, Equipo local, Equipo visitante, int golesLocal, int golesVisitante, ResultadoEnum resultado) {
         this.fecha = fecha;
@@ -118,7 +122,8 @@ public class Partido {
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append("Partido{");
-        sb.append("fecha=").append(fecha);
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd LLLL yyyy");
+        sb.append("fecha=").append(fecha.format(formatter));
         sb.append(", local=").append(local);
         sb.append(", visitante=").append(visitante);
         sb.append(", golesLocal=").append(golesLocal);
