@@ -24,11 +24,14 @@ public class ClienteRegex {
         
         
         try {
-            archivo = new File ("C:\\PremierLeague.csv");
+            archivo = new File ("S:\\PremierLeague.csv");
             
             fr = new FileReader (archivo);
             br = new BufferedReader(fr);
-            String regex = "^(.*(to|ío|ing|<b|ado)\\:?\"?>(.*)<.*)$";
+            //String regex = "^(.*(to|ío|ing|<b|ado)\\:?\"?>(.*)<.*)$";
+//            String regex = "^(\\d+/ \\d{2}[/]\\d{4})$";
+             String regex = "^,{1}(.+,{1}\\d+),{1$";
+             regex = "^(.+,{1}.+)$";
             //String regex = "^(.*(Puerto|Río|Ultimo Registro|Fecha Hora|Estado).*>(.*)<.*>(.*)<.*.*>(.*)<.*)$";
             
             //String regex = ".*data-label(.*>(\\w{1,20}\s\\..*\\.)<.*)";
@@ -38,8 +41,21 @@ public class ClienteRegex {
             Pattern pattern = Pattern.compile(regex);
             String linea;
             int con=0; 
-            while((linea=br.readLine())!=null){
-                System.out.println(linea);
+            linea=br.readLine();
+            linea=br.readLine();
+            
+            System.out.println(linea);
+            
+            Matcher matcher = pattern.matcher(linea);
+            if(matcher.matches()){
+                System.out.println("Vamo lo pibe");
+                System.out.println("Grupo PUERTO1 :      " + matcher.group(1));
+            }
+            
+//            while((linea=br.readLine())!=null){
+//                System.out.println(linea);
+                
+                
                 /*Matcher matcher = pattern.matcher(linea);
                 if(matcher.matches()){
                      con ++;
@@ -59,7 +75,7 @@ public class ClienteRegex {
                    //System.out.println("Grupo PUERTO11 :      " + matcher.group(11));
                    
                 }*/
-            }
+            //}
         }catch(Exception e){
 
         }finally{
@@ -74,6 +90,8 @@ public class ClienteRegex {
                 e2.printStackTrace();
             }
         }
+        
+    
         
 }
 }
