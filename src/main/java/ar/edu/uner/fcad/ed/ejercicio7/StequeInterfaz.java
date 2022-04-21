@@ -1,4 +1,4 @@
-package src.main.java.ar.edu.uner.fcad.ed.ejercicio7;
+package ar.edu.uner.fcad.ed.ejercicio7;
 
 /**
  *

@@ -1,4 +1,4 @@
-package src.main.java.ar.edu.uner.fcad.ed.ejercicio9;
+package ar.edu.uner.fcad.ed.ejercicio9;
 
 public interface ColaPorEnlacesExtInterfaz <T>{
     /** Elimina de la estructura el número de elementos especificado num*/
