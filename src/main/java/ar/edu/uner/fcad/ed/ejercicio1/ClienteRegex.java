@@ -11,7 +11,9 @@ import java.util.regex.Pattern;
  * @author stefa
  */
 public class ClienteRegex {
-    // String regex = "(\\d{2})[-/](\\dd\\d)[-/](\\d\d\d\d)" ruta relativa de  raiz proyecto
+    public static void main(String[] args) throws Exception {
+
+        // String regex = "(\\d{2})[-/](\\dd\\d)[-/](\\d\d\d\d)" ruta relativa de  raiz proyecto
         //String regex = "([(](0345)[)]\s\\d{9}|([+]549345.*))|(345\\d{7})";
         File archivo = null;
         FileReader fr = null;
@@ -28,11 +30,11 @@ public class ClienteRegex {
             br = new BufferedReader(fr);
             String regex = "^(.*(to|ío|ing|<b|ado)\\:?\"?>(.*)<.*)$";
             //String regex = "^(.*(Puerto|Río|Ultimo Registro|Fecha Hora|Estado).*>(.*)<.*>(.*)<.*.*>(.*)<.*)$";
-         
+            
             //String regex = ".*data-label(.*>(\\w{1,20}\s\\..*\\.)<.*)";
             //String regex = "(.*(to:)\">(.*)<.*)";
             //String regex = "^(.*(to|ío|ng|<b|ado)\\:?\"?>(.*)</?.*)$";
-             
+            
             Pattern pattern = Pattern.compile(regex);
             String linea;
             int con=0; 
@@ -46,17 +48,17 @@ public class ClienteRegex {
                   //System.out.println("Grupo PUERTO1 :      " + matcher.group(1));
     
                    //System.out.println("Grupo PUERTO2 :      " + matcher.group(2));
-                //   System.out.println("Grupo PUERTO3 :      " + matcher.group(3));
+                   //   System.out.println("Grupo PUERTO3 :      " + matcher.group(3));
                    //System.out.println("Grupo PUERTO4 :      " + matcher.group(4));
-                //   System.out.println("Grupo PUERTO5 :      " + matcher.group(5));
-                //   System.out.println("Grupo PUERTO6 :      " + matcher.group(6));
-                //   System.out.println("Grupo PUERTO7 :      " + matcher.group(7));
-                //   System.out.println("Grupo PUERTO8 :      " + matcher.group(8));
-                //   System.out.println("Grupo PUERTO9 :      " + matcher.group(9));
-                  //System.out.println("Grupo PUERTO10 :      " + matcher.group(10));
-                  //System.out.println("Grupo PUERTO11 :      " + matcher.group(11));
-
-                 }*/
+                   //   System.out.println("Grupo PUERTO5 :      " + matcher.group(5));
+                   //   System.out.println("Grupo PUERTO6 :      " + matcher.group(6));
+                   //   System.out.println("Grupo PUERTO7 :      " + matcher.group(7));
+                   //   System.out.println("Grupo PUERTO8 :      " + matcher.group(8));
+                   //   System.out.println("Grupo PUERTO9 :      " + matcher.group(9));
+                   //System.out.println("Grupo PUERTO10 :      " + matcher.group(10));
+                   //System.out.println("Grupo PUERTO11 :      " + matcher.group(11));
+                   
+                }*/
             }
         }catch(Exception e){
 
@@ -73,4 +75,5 @@ public class ClienteRegex {
             }
         }
         
+}
 }
