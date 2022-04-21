@@ -23,7 +23,7 @@ public class ClienteRegex {
         // 5"(.*:\d{2})(.*)"
         
         // pruebas ^(.*(.[A-Z]))
-        String regex = "(.*:\\d{2}).(.*)";
+        String regex = ".*(\\d{2}.\\d{2}.\\d{4}).(.*)";
         File archivo = null;
         FileReader fr = null;
         BufferedReader br = null;
@@ -51,17 +51,18 @@ public class ClienteRegex {
             Pattern pattern = Pattern.compile(regex);
             String linea;
             int con=0; 
-
+            linea=br.readLine();
+             System.out.println("Obteniendo una de sus lineas:\n"+linea);
            while((linea=br.readLine())!=null){
-//             System.out.println(linea);
                 
                 
                 Matcher matcher = pattern.matcher(linea);
                 if(matcher.matches()){
 //                     con ++;
 //                     System.out.println(con);
-                  System.out.println("Matcher Grupo 1 :" + matcher.group(1));
-                  System.out.println("Jugador y 18 miles de datos :" + matcher.group(2));
+                System.out.println("***************");
+                System.out.println("DATE :" + matcher.group(1));
+                System.out.println("Jugador y 18 miles de datos :" + matcher.group(2));
 //                      System.out.println("Grupo PUERTO3 :      " + matcher.group(3));
 //                   System.out.println("Grupo PUERTO4 :      " + matcher.group(4));
 //                      System.out.println("Grupo PUERTO5 :      " + matcher.group(5));
