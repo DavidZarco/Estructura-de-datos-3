@@ -130,6 +130,7 @@ public class Partido {
         sb.append(", golesVisitante=").append(golesVisitante);
         sb.append(", resultado=").append(resultado);
         sb.append('}');
+        sb.append("\n");
         return sb.toString();
     }
     

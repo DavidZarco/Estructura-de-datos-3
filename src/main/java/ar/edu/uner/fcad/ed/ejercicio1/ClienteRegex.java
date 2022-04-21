@@ -27,7 +27,7 @@ public class ClienteRegex {
         // 5"(.*:\d{2})(.*)"
         
         // pruebas ^(.*(.[A-Z]))
-        String regex = "^.*,(\\d{2})/(\\d{2})/(\\d{4}),.{5},([A-z]+),([A-z]+),(\\d+),(\\d+),([A-Z]{1}).*$";
+        final String regex = "^.*,(\\d{2})/(\\d{2})/(\\d{4}),.{5},([A-z]+),([A-z]+),(\\d+),(\\d+),([A-Z]{1}).*$";
         File archivo = null;
         FileReader fr = null;
         BufferedReader br = null;
@@ -47,33 +47,35 @@ public class ClienteRegex {
             int con=0; 
             linea=br.readLine();
              System.out.println("Obteniendo una de sus lineas:\n"+linea);
+             Matcher matcher = null;
            while((linea=br.readLine())!=null){
                
-                Matcher matcher = pattern.matcher(linea);
+                matcher = pattern.matcher(linea);
                 if(matcher.matches()){
-                System.out.println("***************");
-                //System.out.println("Matcheo primer grupo(dia): "+matcher.group(1));
+                //System.out.println("***************");
+                
                 int dia = Integer.parseInt(matcher.group(1));
-                    System.out.println("EL DIA ES: "+dia);
-                //System.out.println("Matcheo segundo grupo(mes): "+matcher.group(2));
+                //System.out.println("EL DIA ES: "+dia);
+                
                 int mes = Integer.parseInt(matcher.group(2));
-                System.out.println("EL MES ES: "+mes);
-                //System.out.println("Matcheo tercer grupo(anio): "+matcher.group(3));
+                //System.out.println("EL MES ES: "+mes);
+                
                 int anio = Integer.parseInt(matcher.group(3));
-                System.out.println("EL ANIO ES: "+anio);
-                //System.out.println("Matcheo cuarto grupo(HomeTeam): "+matcher.group(4));
+                //System.out.println("EL ANIO ES: "+anio);
+                
                 String local = matcher.group(4);
-                    System.out.println("Local : "+local);
-                //System.out.println("Matcheo quinto grupo(AwayTeam): "+matcher.group(5));
+                //System.out.println("Local : "+local);
+                
                 String visitante = matcher.group(5);
-                    System.out.println("Visitante: "+visitante);
-                //System.out.println("Matcheo sexto grupo(FTHG): "+matcher.group(6));
+                //System.out.println("Visitante: "+visitante);
+                
                 int golesLocal = Integer.parseInt(matcher.group(6));
-                    System.out.println("Goles local: "+golesLocal);
-                //System.out.println("Matcheo septimo grupo(FTAG): "+matcher.group(7));
+                //System.out.println("Goles local: "+golesLocal);
+                
                 int golesVisitante = Integer.parseInt(matcher.group(7));
-                System.out.println("Goles Visitante: "+golesVisitante);
-                System.out.println("Matcheo octavo grupo(FTR): "+matcher.group(8));
+                //System.out.println("Goles Visitante: "+golesVisitante);
+                //System.out.println("Matcheo octavo grupo(FTR): "+matcher.group(8));
+                
                 
                 
                 if(matcher.group(8).equals("D")){
@@ -110,7 +112,9 @@ public class ClienteRegex {
             }
         }
         
-        System.out.println("El partido ultimo fue:"+partidoAux);
+        System.out.println("El ultimo partido fue:"+partidoAux);
+        PartidosAdmin partidosAdmin = new PartidosAdmin(partidos);
+        System.out.println("Partidos donde jugó Liverpool: "+partidosAdmin.filtrarPorEquipo(new Equipo("Liverpool")));
         
 }
 }
