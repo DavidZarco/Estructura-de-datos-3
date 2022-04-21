@@ -23,31 +23,19 @@ public class ClienteRegex {
         // 5"(.*:\d{2})(.*)"
         
         // pruebas ^(.*(.[A-Z]))
-        String regex = ".*(\\d{2}.\\d{2}.\\d{4}).(.*)";
+        String regex = "^.*,(\\d{2})/(\\d{2})/(\\d{4}),.{5},([A-z]+),([A-z]+),(\\d{1}),(\\d{1}),([A-Z]{1}).*$";
         File archivo = null;
         FileReader fr = null;
         BufferedReader br = null;
         
         
-        //
-        
         
         try {
-            archivo = new File ("C:\\PremierLeague.csv");
+            archivo = new File ("S:\\PremierLeague.csv");
             
             fr = new FileReader (archivo);
             br = new BufferedReader(fr);
-            //String regex = "^(.*(to|ío|ing|<b|ado)\\:?\"?>(.*)<.*)$";
-//            String regex = "^(\\d+/ \\d{2}[/]\\d{4})$";
-            // String regex = "^,{1}(.+,{1}\\d+),{1$";
-             //regex = "^(.+,{1}.+)$";
-             //regex="^(.+,{1}.+)$"
-            //String regex = "^(.*(Puerto|Río|Ultimo Registro|Fecha Hora|Estado).*>(.*)<.*>(.*)<.*.*>(.*)<.*)$";
-            
-            //String regex = ".*data-label(.*>(\\w{1,20}\s\\..*\\.)<.*)";
-            //String regex = "(.*(to:)\">(.*)<.*)";
-            //String regex = "^(.*(to|ío|ng|<b|ado)\\:?\"?>(.*)</?.*)$";
-            
+           
             Pattern pattern = Pattern.compile(regex);
             String linea;
             int con=0; 
@@ -55,24 +43,23 @@ public class ClienteRegex {
              System.out.println("Obteniendo una de sus lineas:\n"+linea);
            while((linea=br.readLine())!=null){
                 
-                
                 Matcher matcher = pattern.matcher(linea);
                 if(matcher.matches()){
-//                     con ++;
-//                     System.out.println(con);
                 System.out.println("***************");
-                System.out.println("DATE :" + matcher.group(1));
-                System.out.println("Jugador y 18 miles de datos :" + matcher.group(2));
-//                      System.out.println("Grupo PUERTO3 :      " + matcher.group(3));
-//                   System.out.println("Grupo PUERTO4 :      " + matcher.group(4));
-//                      System.out.println("Grupo PUERTO5 :      " + matcher.group(5));
-//                      System.out.println("Grupo PUERTO6 :      " + matcher.group(6));
-//                      System.out.println("Grupo PUERTO7 :      " + matcher.group(7));
-//                      System.out.println("Grupo PUERTO8 :      " + matcher.group(8));
-//                      System.out.println("Grupo PUERTO9 :      " + matcher.group(9));
-//                   System.out.println("Grupo PUERTO10 :      " + matcher.group(10));
-//                   System.out.println("Grupo PUERTO11 :      " + matcher.group(11));
-//                   
+                System.out.println("Matcheo primer grupo(dia): "+matcher.group(1));
+                System.out.println("Matcheo segundo grupo(mes): "+matcher.group(2));
+                System.out.println("Matcheo tercer grupo(anio): "+matcher.group(3));
+                System.out.println("Matcheo cuarto grupo(HomeTeam): "+matcher.group(4));
+                System.out.println("Matcheo quinto grupo(AwayTeam): "+matcher.group(5));
+                System.out.println("Matcheo sexto grupo(FTHG): "+matcher.group(6));
+                System.out.println("Matcheo septimo grupo(FTAG): "+matcher.group(7));
+                System.out.println("Matcheo octavo grupo(FTR): "+matcher.group(8));
+                   
+                
+                // Creacion de objetos ------------------
+                
+                
+                
                 }
             }
         }catch(Exception e){
