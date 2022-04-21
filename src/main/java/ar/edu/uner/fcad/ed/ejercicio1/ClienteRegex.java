@@ -16,14 +16,14 @@ public class ClienteRegex {
         // String regex = "(\\d{2})[-/](\\dd\\d)[-/](\\d\d\d\d)" ruta relativa de  raiz proyecto
         
         // REGEX VIEJO
-        // String regex ="^(.+,{1}.+)$";
+        // String regex ="^(.+,{1}.+)$";  DE LOS PIBES
         // 2 String regex = "(.*())";
         // 3 ^(.*)\s(.*)
         // 4 "^(.*\\s(.*))$";
-        // 5
+        // 5"(.*:\d{2})(.*)"
         
         // pruebas ^(.*(.[A-Z]))
-        String regex = "^(.*\\s(.*))$";
+        String regex = "(.*:\\d{2}).(.*)";
         File archivo = null;
         FileReader fr = null;
         BufferedReader br = null;
@@ -60,8 +60,8 @@ public class ClienteRegex {
                 if(matcher.matches()){
 //                     con ++;
 //                     System.out.println(con);
-                  System.out.println("Matcher Grupo 1 :      " + matcher.group(1));
-                  System.out.println("Jugador y 18 miles de datos :      " + matcher.group(2));
+                  System.out.println("Matcher Grupo 1 :" + matcher.group(1));
+                  System.out.println("Jugador y 18 miles de datos :" + matcher.group(2));
 //                      System.out.println("Grupo PUERTO3 :      " + matcher.group(3));
 //                   System.out.println("Grupo PUERTO4 :      " + matcher.group(4));
 //                      System.out.println("Grupo PUERTO5 :      " + matcher.group(5));
