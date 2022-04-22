@@ -34,6 +34,7 @@ public class ClienteRegex {
         
         
         List<Partido> partidos = new ArrayList();
+        List<EquipoPuntaje> listaEquipos = new ArrayList();
         Partido partidoAux = new Partido();
         Equipo equipoAuxVisit;
         Equipo equipoAuxLocal;
@@ -78,15 +79,109 @@ public class ClienteRegex {
                 //System.out.println("Goles Visitante: "+golesVisitante);
                 //System.out.println("Matcheo octavo grupo(FTR): "+matcher.group(8));
                 
+                
+                
+                
+                
+                // --------------------------------------------------------------------------------------
+                
+                
+//                 // Me fijo si ya existe el VISITANTE( USANDO equipoPuntaje en listaEquipos)
+
+
+//                    Boolean existeVisit = false;
+//                    Boolean existeLocal = false;
+//                    for (EquipoPuntaje equipo : listaEquipos) {
+//                        if(existeVisit == false){ // SI TODAVIA NO LO ENCONTRAMOS AL VISITANTE
+//                             if((equipo.getEquipo().getNombre().equals(matcher.group(5)))){ // EL VISITANTE YA EXISTE
+//                            equipo.setGolesAfavor(equipo.getGolesAfavor()+golesVisitante);
+//                            equipo.setGolesRecibidos(golesLocal);
+//                            
+//                            
+//                            if(matcher.group(8).equals("D")){           // EMPATADOS,PERDIDOS Y GANADOS
+//                                equipo.setPartEmpatados(equipo.getPartEmpatados()+1);
+//                            }else{
+//                                if(matcher.group(8).equals("H")){
+//                                    equipo.setPartPerdidos(equipo.getPartPerdidos()+1);
+//                                }else{
+//                                    if(matcher.group(8).equals("A")){
+//                                    equipo.setPartPerdidos(equipo.getPartGanados()+1);
+//                                }
+//                                }
+//                            }
+//                         }
+//                             existeVisit = true;
+//                        }
+//                        if(existeLocal == false){
+//                             
+//                             if((equipo.getEquipo().getNombre().equals(matcher.group(4)))){ // EL LOCAL YA EXISTE
+//                            equipo.setGolesAfavor(equipo.getGolesAfavor()+golesLocal);
+//                            equipo.setGolesRecibidos(golesVisitante);
+//                            
+//                            
+//                            if(matcher.group(8).equals("D")){           // EMPATADOS,PERDIDOS Y GANADOS
+//                                equipo.setPartEmpatados(equipo.getPartEmpatados()+1);
+//                            }else{
+//                                if(matcher.group(8).equals("A")){
+//                                    equipo.setPartPerdidos(equipo.getPartPerdidos()+1);
+//                                }else{
+//                                    if(matcher.group(8).equals("H")){
+//                                    equipo.setPartPerdidos(equipo.getPartGanados()+1);
+//                                }
+//                                }
+//                            }
+//                         }
+//                            // copiar lo del otro
+//                            
+//                        existeLocal = true;
+//                        }
+//                            
+//                         
+//                        
+//                           
+//                        }
+//                        if(existeVisit == false){
+//                            equipoAuxVisit = new Equipo(matcher.group(5));
+//                            if(matcher.group(8).equals("D")){           // EMPATADOS,PERDIDOS Y GANADOS
+//                                listaEquipos.add(new EquipoPuntaje(equipoAuxVisit,golesVisitante, golesLocal,0, 0, 1));
+//                            }else{
+//                                if(matcher.group(8).equals("H")){
+//                                    listaEquipos.add(new EquipoPuntaje(equipoAuxVisit,golesVisitante, golesLocal,0, 1, 0));
+//                                }else{
+//                                    if(matcher.group(8).equals("A")){
+//                                    listaEquipos.add(new EquipoPuntaje(equipoAuxVisit,golesVisitante, golesLocal,1, 0, 0));
+//                                }
+//                                }
+//                            }
+//                            
+//                        }
+//                        if(existeLocal == false){
+//                            equipoAuxLocal = new Equipo(matcher.group(4));
+//                            if(matcher.group(8).equals("D")){           // EMPATADOS,PERDIDOS Y GANADOS
+//                                listaEquipos.add(new EquipoPuntaje(equipoAuxLocal,golesLocal, golesVisitante,0, 0, 1));
+//                            }else{
+//                                if(matcher.group(8).equals("A")){
+//                                    listaEquipos.add(new EquipoPuntaje(equipoAuxLocal,golesLocal, golesVisitante,1, 0, 0));
+//                                }else{
+//                                    if(matcher.group(8).equals("H")){
+//                                    listaEquipos.add(new EquipoPuntaje(equipoAuxLocal,golesLocal, golesVisitante,0, 1, 0));
+//                                }
+//                                }
+//                            }
+//                        }
+                    
+                    // --------------------------------------------------------------------------------------
                     
                     // Me fijo si ya existe el VISITANTE
                     equipoAuxVisit = new Equipo(matcher.group(5));
                     for (Partido partido : partidos) {
                          if((partido.getVisitante().getNombre().equals(matcher.group(5)))){
                              equipoAuxVisit = partido.getVisitante();
+                             System.out.println("El equipo visitante "+matcher.group(5)+" ya existe.");
                          }else{
                              if((partido.getLocal().getNombre().equals(matcher.group(5)))){
                                  equipoAuxVisit = partido.getLocal();
+                                 System.out.println("El equipo local "+matcher.group(5)+" ya existe.");
                              }
                          }
                     }
@@ -138,8 +233,8 @@ public class ClienteRegex {
         }
         
         System.out.println("El ultimo partido fue:"+partidoAux);
-        PartidosAdmin partidosAdmin = new PartidosAdmin(partidos);
+        PartidosAdmin partidosAdmin = new PartidosAdmin(partidos);      // Recien guardo los partidos en partidosAdmin -----------------------
         System.out.println("Partidos donde jugó Liverpool: "+partidosAdmin.filtrarPorEquipo(new Equipo("Liverpool")));
-        
+        System.out.println("Listado de equipos con puntuacion \n"+listaEquipos.get(1));
 }
 }

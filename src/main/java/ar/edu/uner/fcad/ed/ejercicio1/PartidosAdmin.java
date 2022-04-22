@@ -9,6 +9,7 @@ import java.util.List;
  */
 public class PartidosAdmin {
     protected List<Partido> listaPartidos = new ArrayList();
+    protected List<EquipoPuntaje> listaEquipos = new ArrayList();
 
     public PartidosAdmin(){}
     
