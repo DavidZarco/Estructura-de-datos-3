@@ -35,6 +35,8 @@ public class ClienteRegex {
         
         List<Partido> partidos = new ArrayList();
         Partido partidoAux = new Partido();
+        Equipo equipoAuxVisit;
+        Equipo equipoAuxLocal;
         
         try {
             archivo = new File ("S:\\PremierLeague.csv");
@@ -76,16 +78,39 @@ public class ClienteRegex {
                 //System.out.println("Goles Visitante: "+golesVisitante);
                 //System.out.println("Matcheo octavo grupo(FTR): "+matcher.group(8));
                 
-                
+                    
+                    // Me fijo si ya existe el VISITANTE
+                    equipoAuxVisit = new Equipo(matcher.group(5));
+                    for (Partido partido : partidos) {
+                         if((partido.getVisitante().getNombre().equals(matcher.group(5)))){
+                             equipoAuxVisit = partido.getVisitante();
+                         }else{
+                             if((partido.getLocal().getNombre().equals(matcher.group(5)))){
+                                 equipoAuxVisit = partido.getLocal();
+                             }
+                         }
+                    }
+                    
+                    // Me fijo si ya existe el LOCAL
+                    equipoAuxLocal = new Equipo(matcher.group(4));
+                    for (Partido partido : partidos) {
+                         if((partido.getVisitante().getNombre().equals(matcher.group(4)))){
+                             equipoAuxLocal = partido.getVisitante();
+                         }else{
+                             if((partido.getLocal().getNombre().equals(matcher.group(4)))){
+                                 equipoAuxLocal = partido.getLocal();
+                             }
+                         }
+                    }
                 
                 if(matcher.group(8).equals("D")){
-                    partidoAux = new Partido(LocalDate.of(anio,Month.of(mes),dia),new Equipo(local),new Equipo(visitante),golesLocal,golesVisitante,ResultadoEnum.D);
+                    partidoAux = new Partido(LocalDate.of(anio,Month.of(mes),dia),equipoAuxLocal,equipoAuxVisit,golesLocal,golesVisitante,ResultadoEnum.D);
                 }else{
                     if(matcher.group(8).equals("A")){
-                        partidoAux = new Partido(LocalDate.of(anio,Month.of(mes),dia),new Equipo(local),new Equipo(visitante),golesLocal,golesVisitante,ResultadoEnum.A);
+                        partidoAux = new Partido(LocalDate.of(anio,Month.of(mes),dia),equipoAuxLocal,equipoAuxVisit,golesLocal,golesVisitante,ResultadoEnum.A);
                     }else{
                         if(matcher.group(8).equals("H")){
-                            partidoAux = new Partido(LocalDate.of(anio,Month.of(mes),dia),new Equipo(local),new Equipo(visitante),golesLocal,golesVisitante,ResultadoEnum.A);
+                            partidoAux = new Partido(LocalDate.of(anio,Month.of(mes),dia),equipoAuxLocal,equipoAuxVisit,golesLocal,golesVisitante,ResultadoEnum.A);
                         }
                     }
                 }

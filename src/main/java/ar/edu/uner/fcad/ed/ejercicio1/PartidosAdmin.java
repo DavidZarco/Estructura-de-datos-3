@@ -49,17 +49,5 @@ public class PartidosAdmin {
         return null;
     }
     
-    // Metodo hecho para corroborar la existencia de un equipo
-    public boolean ExisteEquipo(Equipo equipo){
-   boolean existe = false;
-
-    for (Partido listaPartido : listaPartidos) {
-       if((listaPartido.getVisitante().getNombre().equals(equipo.getNombre())) || (listaPartido.getLocal().getNombre().equals(equipo.getNombre()))){
-         existe = true;
-         break;
-      } 
-    }
-   return existe;
-}
     
 }
