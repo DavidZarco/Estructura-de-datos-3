@@ -6,6 +6,7 @@ import java.io.FileReader;
 import java.time.LocalDate;
 import java.time.Month;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -37,7 +38,7 @@ public class PartidosAdmin {
 
         return filtrarPorEquipo;
     }
-
+    
     // Devuelve el equipo que más ganó de local.
     public Equipo fuerteDeLocal() {
         return null;
@@ -45,17 +46,15 @@ public class PartidosAdmin {
 
     // Devuelve el equipo que más goles recibió.
     public Equipo problemasDefensivos() {
-        return null;
+        return Collections.max(listaEquipos, new GolesRecibidosComparator()).getEquipo();
     }
 
     // Devuelve el equipo que más empató.
     public Equipo deportivoEmpate() {
-        return null;
+        return Collections.max(listaEquipos, new EmpatesComparator()).getEquipo();
     }
 
     public void listarEquipos() {
-        Equipo local;
-        Equipo visitante;
         boolean existeLocal = false;
         boolean existeVisit = false;
         for (Partido partido : listaPartidos) {
@@ -99,7 +98,7 @@ public class PartidosAdmin {
             }
             for (EquipoPuntaje equipoPuntaje : listaEquipos) {  // PARA EL VISITANTE
                 if (equipoPuntaje.getEquipo() == partido.getVisitante()) {  // Ya que no se repiten los objetos equipo, verifico por direccion de memoria
-                    existeLocal = true;
+                    existeVisit = true;
                     // Metodos para agregarle al visitante
                     equipoPuntaje.setGolesAfavor(equipoPuntaje.getGolesAfavor() + partido.getGolesVisitante()); // goles a favor
                     equipoPuntaje.setGolesRecibidos(equipoPuntaje.getGolesRecibidos() + partido.getGolesLocal()); // goles recibidos
@@ -114,6 +113,22 @@ public class PartidosAdmin {
                             }
                         }
                     }
+                }
+            }
+            
+             if (existeVisit == false) {   // Si no existía el visitante
+
+                if (partido.resultado == ResultadoEnum.H) { // Si gano el local
+                    listaEquipos.add(new EquipoPuntaje(partido.getVisitante(), partido.getGolesVisitante(), partido.getGolesVisitante(), 0, 1, 0));
+                } else {
+                    if (partido.resultado == ResultadoEnum.A) { // Si gano el visitante
+                        listaEquipos.add(new EquipoPuntaje(partido.getVisitante(), partido.getGolesVisitante(), partido.getGolesVisitante(), 1, 0, 0));
+                    } else {
+                        if (partido.resultado == ResultadoEnum.D) { // Si hubo empate
+                            listaEquipos.add(new EquipoPuntaje(partido.getVisitante(), partido.getGolesVisitante(), partido.getGolesVisitante(), 0, 0, 0));
+                        }
+                    }
+
                 }
             }
 
@@ -132,7 +147,7 @@ public class PartidosAdmin {
             String linea;
 
             linea = br.readLine();
-            System.out.println("Obteniendo una de sus lineas:\n" + linea);
+            
             Matcher matcher;
 
             Partido partidoAux = new Partido();
@@ -143,40 +158,38 @@ public class PartidosAdmin {
 
                 matcher = pattern.matcher(linea);
                 if (matcher.matches()) {
-                    //System.out.println("***************");
+                   
 
                     int dia = Integer.parseInt(matcher.group(1));
-                    //System.out.println("EL DIA ES: "+dia);
+                    
 
                     int mes = Integer.parseInt(matcher.group(2));
-                    //System.out.println("EL MES ES: "+mes);
+                    
 
                     int anio = Integer.parseInt(matcher.group(3));
-                    //System.out.println("EL ANIO ES: "+anio);
+                   
 
                     String local = matcher.group(4);
-                    //System.out.println("Local : "+local);
+                   
 
                     String visitante = matcher.group(5);
-                    //System.out.println("Visitante: "+visitante);
+                   
 
                     int golesLocal = Integer.parseInt(matcher.group(6));
-                    //System.out.println("Goles local: "+golesLocal);
+                   
 
                     int golesVisitante = Integer.parseInt(matcher.group(7));
-                    //System.out.println("Goles Visitante: "+golesVisitante);
-                    //System.out.println("Matcheo octavo grupo(FTR): "+matcher.group(8));
-
+                 
                     // Me fijo si ya existe el VISITANTE
                     equipoAuxVisit = new Equipo(matcher.group(5));
                     for (Partido partido : listaPartidos) {
                         if ((partido.getVisitante().getNombre().equals(matcher.group(5)))) {
                             equipoAuxVisit = partido.getVisitante();
-                            System.out.println("El equipo visitante " + matcher.group(5) + " ya existe.");
+//                            System.out.println("El equipo visitante " + matcher.group(5) + " ya existe.");
                         } else {
                             if ((partido.getLocal().getNombre().equals(matcher.group(5)))) {
                                 equipoAuxVisit = partido.getLocal();
-                                System.out.println("El equipo local " + matcher.group(5) + " ya existe.");
+//                                System.out.println("El equipo local " + matcher.group(5) + " ya existe.");
                             }
                         }
                     }
@@ -223,11 +236,13 @@ public class PartidosAdmin {
                 e2.printStackTrace();
             }
         }
+        this.listarEquipos();
     }
 
     // Devuelve en orden descendente los equipos junto con su puntaje.
     public List<EquipoPuntaje> tablaDePosiciones() {
         this.listarEquipos();
+        listaEquipos.sort(new GolesAFavorComparator());
         return this.listaEquipos;
     }
 
