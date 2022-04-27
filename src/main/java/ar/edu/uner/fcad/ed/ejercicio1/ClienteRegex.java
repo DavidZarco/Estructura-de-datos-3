@@ -235,6 +235,6 @@ public class ClienteRegex {
         System.out.println("El ultimo partido fue:"+partidoAux);
         PartidosAdmin partidosAdmin = new PartidosAdmin(partidos);      // Recien guardo los partidos en partidosAdmin -----------------------
         System.out.println("Partidos donde jugó Liverpool: "+partidosAdmin.filtrarPorEquipo(new Equipo("Liverpool")));
-        System.out.println("Listado de equipos con puntuacion \n"+listaEquipos.get(1));
+        System.out.println("Listado de equipos con puntuacion \n"+partidosAdmin.tablaDePosiciones());
 }
 }

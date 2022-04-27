@@ -127,6 +127,7 @@ public class EquipoPuntaje {
         sb.append(", partPerdidos=").append(partPerdidos);
         sb.append(", partEmpatados=").append(partEmpatados);
         sb.append('}');
+        sb.append("\n");
         return sb.toString();
     }
     
