@@ -169,17 +169,11 @@ public class PartidosAdmin {
                     int anio = Integer.parseInt(matcher.group(3));
                    
 
-                    String local = matcher.group(4);
-                   
-
-                    String visitante = matcher.group(5);
-                   
-
                     int golesLocal = Integer.parseInt(matcher.group(6));
                    
 
                     int golesVisitante = Integer.parseInt(matcher.group(7));
-                 
+                
                     // Me fijo si ya existe el VISITANTE
                     equipoAuxVisit = new Equipo(matcher.group(5));
                     for (Partido partido : listaPartidos) {

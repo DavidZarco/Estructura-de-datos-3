@@ -11,4 +11,17 @@
         <exec.mainClass>com.mycompany.trabajopractico3.TrabajoPractico3</exec.mainClass>
     
     </properties>
+  <dependencies>
+        <dependency>
+            <groupId>com.github.nachonovello1984</groupId>
+            <artifactId>ed-fcad-uner</artifactId>
+            <version>-SNAPSHOT</version>
+        </dependency>
+    </dependencies>
+    <repositories>
+        <repository>
+            <id>jitpack.io</id>
+            <url>https://jitpack.io</url>
+        </repository>
+    </repositories>
 </project>
