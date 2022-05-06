@@ -17,15 +17,24 @@ public class ListaDoble<T> implements ListaDobleInterfaz<T>{
     public int size() {
         int size = 0;
         NodoListaDoble<T> aux = header;
-        if(aux.getSiguiente()!= null){
+        while(aux.getSiguiente()!= null){
             size++;
             aux = aux.getSiguiente();
         }
+        return size;
     }
+    
     
     @Override
     public T get(int index) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        T objeto = null;
+        NodoListaDoble<T> aux = header;
+     if(!isEmpty() && this.size()>index){
+         for (int i = 0; i < index; i++) {
+             
+         }
+     }   
+     return objeto;
     }
     
     @Override

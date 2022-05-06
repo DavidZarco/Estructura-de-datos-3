@@ -8,14 +8,14 @@ import ar.edu.uner.fcad.ed.edlineales.NodoLista;
  */
 public class NodoListaDoble<T>{
     protected T elemento;
-    protected NodoLista<T> siguiente;
-    protected NodoLista<T> anterior;
+    protected NodoListaDoble<T> siguiente;
+    protected NodoListaDoble<T> anterior;
 
     public NodoListaDoble( T elemento) {
         this.elemento = elemento;
     }
 
-    public NodoListaDoble(T elemento, NodoLista<T> siguiente) {
+    public NodoListaDoble(T elemento, NodoListaDoble<T> siguiente) {
         this.elemento = elemento;
         this.siguiente = siguiente;
     }
@@ -24,18 +24,18 @@ public class NodoListaDoble<T>{
         return this.elemento;
     }
     
-    public NodoLista<T> getSiguiente(){
+    public NodoListaDoble<T> getSiguiente(){
         return this.siguiente;
     }
     
-    public void setSiguiente(NodoLista<T> siguiente){
+    public void setSiguiente(NodoListaDoble<T> siguiente){
         this.siguiente = siguiente;
     }
     
-    public NodoLista<T> getAnterior() {
+    public NodoListaDoble<T> getAnterior() {
         return anterior;
     }
-    public void setAnterior(NodoLista<T>anterior ) {
+    public void setAnterior(NodoListaDoble<T>anterior ) {
         this.anterior = anterior;
     }
     
