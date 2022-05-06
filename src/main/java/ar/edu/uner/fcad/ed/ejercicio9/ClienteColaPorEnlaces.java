@@ -20,5 +20,10 @@ public class ClienteColaPorEnlaces {
         System.out.println("toString: "+cola.toString());
         cola.reemplazarTodos("auto", "batman");
         System.out.println("Reemplazo auto por batman: "+cola.toString());
+        cola.exchange();
+        System.out.println("Intercambio el primer elemento por el ultimo: "+cola.toString());
+        
+        System.out.println("Hago dequeue de los 3 primeros y los imprimo: "+cola.multiDequeue(3));
+        
     }
 }

@@ -12,9 +12,10 @@ public class ColaPorEnlacesExt<T> extends ColaPorEnlaces<T> implements ColaPorEn
 
     @Override
     public ListaEnlazadaNoOrdenada<T> multiDequeue(int num) {
-        ListaEnlazadaNoOrdenada<T> listaAux = new ListaEnlazadaNoOrdenada<>();
-        for (int i = 0; i <= num; i++) {
-            this.dequeue();
+        ListaEnlazadaNoOrdenada<T> listaAux = new ListaEnlazadaNoOrdenada<T>();
+        for (int i = 0; i < num; i++) {
+            listaAux.addToRear(this.front.getElemento());
+            super.dequeue();
         }
         return listaAux;
     }
@@ -46,7 +47,9 @@ public class ColaPorEnlacesExt<T> extends ColaPorEnlaces<T> implements ColaPorEn
 
     @Override
     public void exchange() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        T elemAux = this.front.getElemento();
+        this.front.setElemento(this.back.getElemento());
+        this.back.setElemento(elemAux);
     }
     
 }
