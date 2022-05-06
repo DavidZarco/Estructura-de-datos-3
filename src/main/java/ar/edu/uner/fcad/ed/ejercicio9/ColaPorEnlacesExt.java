@@ -1,24 +1,47 @@
 package ar.edu.uner.fcad.ed.ejercicio9;
 
+import ar.edu.uner.fcad.ed.edlineales.ListaEnlazadaNoOrdenada;
+import ar.edu.uner.fcad.ed.edlineales.NodoLista;
+import ar.edu.uner.fcad.ed.edlineales.colas.ColaPorEnlaces;
+
 /**
  *
  * @author stefa
  */
-public class ColaPorEnlacesExt<T> implements ColaPorEnlacesExtInterfaz<T>{
+public class ColaPorEnlacesExt<T> extends ColaPorEnlaces<T> implements ColaPorEnlacesExtInterfaz<T>{
 
     @Override
-    public Object multiDequeue(int num) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    public ListaEnlazadaNoOrdenada<T> multiDequeue(int num) {
+        ListaEnlazadaNoOrdenada<T> listaAux = new ListaEnlazadaNoOrdenada<>();
+        for (int i = 0; i <= num; i++) {
+            this.dequeue();
+        }
+        return listaAux;
     }
 
     @Override
     public void reemplazarTodos(T param1, T param2) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+     NodoLista<T> aux = this.front;
+        for (int i = 0; i < this.size(); i++) {
+            if(aux.getElemento().equals(param1)){
+                aux.setElemento(param2);
+            }
+            aux = aux.getSiguiente();
+        }
     }
 
     @Override
     public int size() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        NodoLista<T> aux = this.front;
+        if(isEmpty()){
+            return 0;
+        }
+        int size = 1;
+        while(aux.getSiguiente()!=null){ // Mientras haya un siguiente
+            size++;
+            aux = aux.getSiguiente();
+        }
+        return size;
     }
 
     @Override
