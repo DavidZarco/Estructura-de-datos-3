@@ -38,6 +38,8 @@ public class IteradorListaDoble<T> implements IteradorListaDobleInterfaz<T> {
         return nodoActual.getAnterior()!=null;
     }
     
+    
+    
     @Override
     public T anterior() {
         if(this.existeAnterior()==false){
