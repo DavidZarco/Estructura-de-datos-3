@@ -27,14 +27,13 @@ public class ListaDoble<T> implements ListaDobleInterfaz<T>{
     
     @Override
     public T get(int index) {
-        T objeto = null;
         NodoListaDoble<T> aux = header;
      if(!isEmpty() && this.size()>index){
          for (int i = 0; i < index; i++) {
-             
+             aux = aux.getSiguiente();
          }
      }   
-     return objeto;
+     return aux.elemento;
     }
     
     @Override
