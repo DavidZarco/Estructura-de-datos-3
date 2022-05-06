@@ -4,7 +4,7 @@ package ar.edu.uner.fcad.ed.ejercicio4;
  *
  * @author stefa
  */
-public interface IteradorListaDobleInterfaz<T> {
+public interface IteradorListaDobleInterfaz<T> extends Iterador<T> {
     /** Indica si existe un nodo a continuación del actual. */
     public boolean existeSiguiente();
     /** Sigue el enlace al nodo siguiente y devuelve el elemento del mismo. */

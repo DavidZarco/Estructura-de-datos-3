@@ -30,6 +30,5 @@ public interface ListaDobleInterfaz<T> {
     
     
     /** Concatena todos los elementos de la estructura en un String. */
-    @Override
     public String toString();
 }
