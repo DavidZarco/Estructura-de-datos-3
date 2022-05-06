@@ -3,6 +3,7 @@ package ar.edu.uner.fcad.ed.ejercicio4;
 /**
  *
  * @author stefa
+ * @param <T>
  */
 public class IteradorListaDoble<T> implements IteradorListaDobleInterfaz<T> {
 
