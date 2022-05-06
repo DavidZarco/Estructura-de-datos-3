@@ -39,7 +39,19 @@ public class ListaDoble<T> implements ListaDobleInterfaz<T>{
     
     @Override
     public void add(T element) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+       NodoListaDoble<T> nodoPorAgregar = new NodoListaDoble(element);
+       if(this.size()==0){
+           this.header = nodoPorAgregar;
+       }else{
+           
+           NodoListaDoble<T> nodoActual = header;
+       while(nodoActual.siguiente!=null){
+           nodoActual = nodoActual.siguiente;
+       }
+       nodoPorAgregar.setAnterior(nodoActual);
+       nodoActual.setSiguiente(nodoPorAgregar);
+       }
+      
     }
     
     @Override
@@ -49,7 +61,7 @@ public class ListaDoble<T> implements ListaDobleInterfaz<T>{
     
     @Override
     public IteradorListaDoble iterador() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+         return new IteradorListaDoble(this.header);
     }
     
 }

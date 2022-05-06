@@ -1,6 +1,5 @@
 package ar.edu.uner.fcad.ed.ejercicio4;
 
-import ar.edu.uner.fcad.ed.edlineales.NodoLista;
 
 /**
  *
