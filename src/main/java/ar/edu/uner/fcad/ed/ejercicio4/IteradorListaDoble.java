@@ -39,7 +39,6 @@ public class IteradorListaDoble<T> implements IteradorListaDobleInterfaz<T> {
     }
     
     
-    
     @Override
     public T anterior() {
         if(this.existeAnterior()==false){
