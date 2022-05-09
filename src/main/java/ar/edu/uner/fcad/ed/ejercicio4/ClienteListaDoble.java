@@ -23,6 +23,8 @@ public class ClienteListaDoble {
     System.out.println("La posicion 5 tiene el elemento: " + listadoble.get(5));
     listadoble.remove("conejo");
     System.out.println("Lista sin 'conejo': " + listadoble.toString());
+    listadoble.remove("gato");
+    System.out.println("Lista sin 'gato': " + listadoble.toString());
 
     System.out.println("********************* Pruebas con iterador *********************");
     IteradorListaDoble iterador = listadoble.iterador();
