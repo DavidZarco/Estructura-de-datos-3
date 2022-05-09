@@ -35,7 +35,7 @@ public class IteradorListaDoble<T> implements IteradorListaDobleInterfaz<T> {
     
     @Override
     public boolean existeAnterior() {
-        return nodoActual.getAnterior()!=null;
+        return nodoActual.getAnterior() != null;
     }
     
     

@@ -1,5 +1,9 @@
 package ar.edu.uner.fcad.ed.ejercicio4;
 
+import java.util.Objects;
+
+
+
 /**
  *
  * @author stefa
@@ -57,8 +61,8 @@ public class ListaDoble<T> implements ListaDobleInterfaz<T>{
     
     @Override
     public void remove(T element) {
-    NodoListaDoble <T> aux = header;
-    NodoListaDoble <T> previo = null;
+    NodoListaDoble <T> aux = header.siguiente;
+    NodoListaDoble <T> previo = header;
         if (isEmpty()){
             throw new IllegalArgumentException("La lista no posee elementos para eliminar");
         } else {
@@ -68,8 +72,9 @@ public class ListaDoble<T> implements ListaDobleInterfaz<T>{
               aux.siguiente = aux.anterior;
             }
             aux = aux.getSiguiente();
-        }
-    }     
+            previo = previo.siguiente;
+            }
+        }     
     }
     
     @Override
@@ -94,5 +99,5 @@ public class ListaDoble<T> implements ListaDobleInterfaz<T>{
         return resultado.substring(2);
     }
 
- 
+  
 }
