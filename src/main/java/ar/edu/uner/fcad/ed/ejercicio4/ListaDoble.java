@@ -70,7 +70,7 @@ public class ListaDoble<T> implements ListaDobleInterfaz<T>{
             if (aux.getElemento().equals(element)){
               previo.siguiente = aux.siguiente;
               aux.siguiente = aux.anterior;
-            }
+            }       
             aux = aux.getSiguiente();
             previo = previo.siguiente;
             }
