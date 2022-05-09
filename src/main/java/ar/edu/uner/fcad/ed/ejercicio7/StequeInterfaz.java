@@ -7,6 +7,8 @@ package ar.edu.uner.fcad.ed.ejercicio7;
 public interface StequeInterfaz <T> {
     /** Indica si la estructura está vacía*/
     public boolean isEmpty();
+    /** Indica si la estructura está llena*/
+    public boolean isFull();
     /** Retorna el elemento ubicado en el tope de la estructura.*/
     public T top();
     /** Agrega elemento al final de la estructura.*/
