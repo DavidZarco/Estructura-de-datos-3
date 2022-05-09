@@ -6,14 +6,20 @@ package ar.edu.uner.fcad.ed.ejercicio7;
  */
 public class ClienteSteque {
     public static void main(String[] args) {
-        Steque<Integer> pila = new Steque(Integer.class);
-//        pila.push(1);
-//        pila.push(2);
-//        pila.push(3);
-//        pila.push(4);
-//        pila.push(5);
-//        pila.push(6);
-//        System.out.println("Steque:"+pila);
-    }
     
+        Steque<Integer> pila = new Steque();
+        pila.push(1);
+        pila.push(2);
+        pila.push(3);
+        pila.push(4);
+        pila.push(5);
+        pila.push(6);
+        System.out.println("Pila: "+pila);
+       System.out.println("Pila (vaciado): ");
+        while (!pila.isEmpty()) {
+            System.out.println(pila.top().toString());
+            pila.pop();
+        }
+   
+    }
 }

@@ -1,28 +1,16 @@
 package ar.edu.uner.fcad.ed.ejercicio7;
-
+import ar.edu.uner.fcad.ed.edlineales.NodoLista;
 /**
  *
  * @author stefa
  */
 public class Steque<T> implements StequeInterfaz<T> {
-    private static final int CAPACIDAD = 10 ;
-    protected T[] arreglo;
-    protected int tope;
-    protected int capacidad;
+    
+    protected NodoLista<T> tope;
 
-    public class Steque (Class<T> clazz){
-    this(clazz , CAPACIDAD);   
-    }
-    public class Steque(Class<T> clazz, int capacidad){
-    this.capacidad = capacidad;
-    this.arreglo = nuevoArreglo(clazz, capacidad);
-    makeEmpty();
-    }
-    private T[] nuevoArreglo(Class<T> clazz, int capacidad){
-        return(T[]) Array.newInstance(clazz, capacidad);
-    }
-    
-    
+    public Steque(){
+        makeEmpty();
+    }   
     @Override
     public boolean isEmpty() {
         return tope == null;
@@ -30,47 +18,56 @@ public class Steque<T> implements StequeInterfaz<T> {
     
     @Override
     public T top() {
-        if(isEmpty){
+        if(isEmpty()){
             return null;
         }
-    return arreglo[tope];
+    return tope.getElemento();
     }
     
 
-    @Override
-    public void enqueue(T elemento) {
-    }
+//    @Override
+//    public void enqueue(T elemento) {
+//    }
 
     @Override
     public void pop() {
-        this.tope--;
+        this.tope = this.tope.getSiguiente();
     }
 
     @Override
     public void push(T elemento) {
-        if(isFull()){
-            return;
+        if(isEmpty()){
+            this.tope = new NodoLista(elemento);
+        } else {
+            NodoLista<T> nuevoNodo = new NodoLista(elemento);
+            nuevoNodo.setSiguiente(tope);
+            this.tope = nuevoNodo;
         }
-        this.arreglo[++tope] = elemento;
     }
 
     @Override
-    public void makeEmpty() {
-        this.tope = -1 ;
+    public final void makeEmpty() {
+        this.tope = null ;
     }
     public boolean isFull() {
-        return tope == capacidad - 1;
+        return false;
     }
     @Override
     public String toString() {
         String resultado = "";
-        for (int i = tope; i >= 0; i--) {
-            resultado += ", [" + arreglo[i].toString() + "]";
+        
+        NodoLista<T> nodoActual = tope;
+        while(nodoActual != null){
+            resultado += ", " + nodoActual.toString();
+            nodoActual = nodoActual.getSiguiente();
         }
-        if (resultado.length() > 0) {
+        
+        if(resultado.length() > 0){
             resultado = resultado.substring(2);
         }
+        
         return resultado;
     }
     
+
 }
