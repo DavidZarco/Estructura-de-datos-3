@@ -13,17 +13,19 @@ public class EquipoPuntaje {
     private int partGanados;
     private int partPerdidos;
     private int partEmpatados;
-
+    private int puntajeFinal;
+    
     public EquipoPuntaje() {
     }
-
-    public EquipoPuntaje(Equipo equipo, int golesAfavor, int golesRecibidos, int partGanados, int partPerdidos, int partEmpatados) {
+    
+    public EquipoPuntaje(Equipo equipo, int golesAfavor, int golesRecibidos, int partGanados, int partPerdidos, int partEmpatados, int puntajeFinal) {
         this.equipo = equipo;
         this.golesAfavor = golesAfavor;
         this.golesRecibidos = golesRecibidos;
         this.partGanados = partGanados;
         this.partPerdidos = partPerdidos;
         this.partEmpatados = partEmpatados;
+        this.puntajeFinal = puntajeFinal;
     }
 
     public Equipo getEquipo() {
@@ -72,6 +74,14 @@ public class EquipoPuntaje {
 
     public void setPartEmpatados(int partEmpatados) {
         this.partEmpatados = partEmpatados;
+    }
+
+    public int getPuntajeFinal() {
+        return puntajeFinal;
+    }
+
+    public void setPuntajeFinal(int puntajeFinal) {
+        this.puntajeFinal = puntajeFinal;
     }
 
     @Override
@@ -126,6 +136,7 @@ public class EquipoPuntaje {
         sb.append(", partGanados=").append(partGanados);
         sb.append(", partPerdidos=").append(partPerdidos);
         sb.append(", partEmpatados=").append(partEmpatados);
+        sb.append(", puntajeFinal=").append(puntajeFinal);
         sb.append('}');
         sb.append("\n");
         return sb.toString();
