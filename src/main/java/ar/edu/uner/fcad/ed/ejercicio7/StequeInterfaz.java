@@ -19,6 +19,7 @@ public interface StequeInterfaz <T> {
     /** Vacía la estructura */
     public void makeEmpty();
     /** Concatena en un String() todos los de la estructura. */
+
     @Override
     public String toString();
 }

@@ -24,10 +24,9 @@ public class Steque<T> implements StequeInterfaz<T> {
     return tope.getElemento();
     }
     
-
-//    @Override
-//    public void enqueue(T elemento) {
-//    }
+    public void enqueue(T elemento) {
+        push(elemento);    
+    }
 
     @Override
     public void pop() {
