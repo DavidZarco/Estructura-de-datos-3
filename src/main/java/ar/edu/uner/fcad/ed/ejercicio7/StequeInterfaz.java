@@ -1,5 +1,4 @@
 package ar.edu.uner.fcad.ed.ejercicio7;
-
 /**
  *
  * @author stefa
@@ -12,7 +11,7 @@ public interface StequeInterfaz <T> {
     /** Retorna el elemento ubicado en el tope de la estructura.*/
     public T top();
     /** Agrega elemento al final de la estructura.*/
-    public void enqueue(T elemento);
+////    public void enqueue(T elemento);
     /** Quita la posición ubicada en el tope de la estructura.*/
     public void pop();
     /** Agrega elemento en el tope de la estructura.*/
