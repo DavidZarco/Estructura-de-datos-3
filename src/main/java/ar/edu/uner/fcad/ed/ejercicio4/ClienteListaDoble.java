@@ -21,11 +21,10 @@ public class ClienteListaDoble {
     System.out.println("el tamanio es:" + listadoble.size());
     System.out.println("Lista: "+listadoble.toString());
     System.out.println("La posicion 5 tiene el elemento: " + listadoble.get(5));
-//  listadoble.remove("conejo");
-//  System.out.println("Lista sin 'conejo': " + listadoble.toString());
+    listadoble.remove("conejo");
+    System.out.println("Lista sin 'conejo': " + listadoble.toString());
 
-
-    System.out.println("Pruebas con iterador *************************");
+    System.out.println("********************* Pruebas con iterador *********************");
     IteradorListaDoble iterador = listadoble.iterador();
     System.out.println("Elemento: " + iterador.siguiente().toString());
     System.out.println("Elemento siguiente: " + iterador.siguiente().toString());
