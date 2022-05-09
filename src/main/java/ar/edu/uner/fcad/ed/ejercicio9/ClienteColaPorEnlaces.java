@@ -24,6 +24,7 @@ public class ClienteColaPorEnlaces {
         System.out.println("Intercambio el primer elemento por el ultimo: "+cola.toString());
         
         System.out.println("Hago dequeue de los 3 primeros y los imprimo: "+cola.multiDequeue(3));
+        System.out.println("Intercambio el primer elemento por el ultimo: "+cola.toString());
         
     }
 }
