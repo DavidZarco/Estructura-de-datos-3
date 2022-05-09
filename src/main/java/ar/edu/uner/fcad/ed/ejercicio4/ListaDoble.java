@@ -1,9 +1,5 @@
 package ar.edu.uner.fcad.ed.ejercicio4;
 
-import java.util.Objects;
-
-
-
 /**
  *
  * @author stefa
@@ -98,5 +94,5 @@ public class ListaDoble<T> implements ListaDobleInterfaz<T>{
         return resultado.substring(2);
     }
 
-  
+ 
 }
