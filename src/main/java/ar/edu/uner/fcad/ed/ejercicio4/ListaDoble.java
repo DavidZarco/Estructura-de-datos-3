@@ -1,14 +1,16 @@
 package ar.edu.uner.fcad.ed.ejercicio4;
 
-
-
 /**
  *
  * @author stefa
  */
 public class ListaDoble<T> implements ListaDobleInterfaz<T>{
     protected NodoListaDoble<T> header;
-    @Override
+      
+    public ListaDoble() {
+        this.header = new NodoListaDoble(null);
+    }
+        @Override
     public boolean isEmpty() {
          return header.getSiguiente()==null;
     }
@@ -39,8 +41,8 @@ public class ListaDoble<T> implements ListaDobleInterfaz<T>{
     @Override
     public void add(T element) {
        NodoListaDoble<T> nodoPorAgregar = new NodoListaDoble(element);
-       if(this.size()==0){
-           this.header = nodoPorAgregar;
+       if(isEmpty()){
+           this.header.siguiente = nodoPorAgregar;
        }else{
            
            NodoListaDoble<T> nodoActual = header;
@@ -55,11 +57,42 @@ public class ListaDoble<T> implements ListaDobleInterfaz<T>{
     
     @Override
     public void remove(T element) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    NodoListaDoble <T> aux = header;
+    NodoListaDoble <T> previo = null;
+        if (isEmpty()){
+            throw new IllegalArgumentException("La lista no posee elementos para eliminar");
+        } else {
+        while (aux.getSiguiente() != null){
+            if (aux.getElemento().equals(element)){
+              previo.siguiente = aux.siguiente;
+              aux.siguiente = aux.anterior;
+            }
+            aux = aux.getSiguiente();
+        }
+    }     
     }
     
     @Override
     public IteradorListaDoble iterador() {
          return new IteradorListaDoble(this.header);
     }
+    
+     @Override
+        public String toString() {
+        String resultado = "";
+
+        if (isEmpty()) {
+            return resultado;
+        }
+
+        NodoListaDoble<T> nodoActual = this.header.siguiente;
+        while (nodoActual != null) {
+            resultado += ", " + nodoActual.toString();
+            nodoActual = nodoActual.siguiente;
+        }
+
+        return resultado.substring(2);
+    }
+
+ 
 }
