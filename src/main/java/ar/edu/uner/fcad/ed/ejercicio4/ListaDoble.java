@@ -62,5 +62,4 @@ public class ListaDoble<T> implements ListaDobleInterfaz<T>{
     public IteradorListaDoble iterador() {
          return new IteradorListaDoble(this.header);
     }
-    
 }

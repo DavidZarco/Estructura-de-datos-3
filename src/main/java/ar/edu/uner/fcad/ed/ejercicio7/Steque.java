@@ -27,7 +27,7 @@ public class Steque<T> implements StequeInterfaz<T> {
     public boolean isEmpty() {
         return tope == null;
     }
-
+    
     @Override
     public T top() {
         if(isEmpty){
