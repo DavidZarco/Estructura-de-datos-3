@@ -28,7 +28,7 @@ public class PartidosAdmin {
     }
 
     //Devuelve todos los partidos de un equipo.
-    public List<Partido> filtrarPorEquipo(Equipo equipo) {   // FUNCIONA
+    public List<Partido> filtrarPorEquipo(Equipo equipo) { 
         List<Partido> filtrarPorEquipo = new ArrayList();
         for (Partido partido : listaPartidos) {
             if (partido.getLocal().getNombre().equalsIgnoreCase(equipo.getNombre()) || partido.getVisitante().getNombre().equalsIgnoreCase(equipo.getNombre())) {
@@ -43,7 +43,7 @@ public class PartidosAdmin {
     public Equipo fuerteDeLocal() {
         return null;
     }
-
+    
     // Devuelve el equipo que más goles recibió.
     public Equipo problemasDefensivos() {
         return Collections.max(listaEquipos, new GolesRecibidosComparator()).getEquipo();
@@ -84,13 +84,13 @@ public class PartidosAdmin {
             if (existeLocal == false) {   // Si no existía el local
 
                 if (partido.resultado == ResultadoEnum.H) { // Si gano el local
-                    listaEquipos.add(new EquipoPuntaje(partido.getLocal(), partido.getGolesLocal(), partido.getGolesVisitante(), 1, 0, 0));
+                    listaEquipos.add(new EquipoPuntaje(partido.getLocal(), partido.getGolesLocal(), partido.getGolesVisitante(), 1, 0, 0, 0));
                 } else {
                     if (partido.resultado == ResultadoEnum.A) { // Si gano el visitante
-                        listaEquipos.add(new EquipoPuntaje(partido.getLocal(), partido.getGolesLocal(), partido.getGolesVisitante(), 0, 1, 0));
+                        listaEquipos.add(new EquipoPuntaje(partido.getLocal(), partido.getGolesLocal(), partido.getGolesVisitante(), 0, 1, 0, 0));
                     } else {
                         if (partido.resultado == ResultadoEnum.D) { // Si hubo empate
-                            listaEquipos.add(new EquipoPuntaje(partido.getLocal(), partido.getGolesLocal(), partido.getGolesVisitante(), 0, 0, 0));
+                            listaEquipos.add(new EquipoPuntaje(partido.getLocal(), partido.getGolesLocal(), partido.getGolesVisitante(), 0, 0, 0, 0));
                         }
                     }
 
@@ -119,13 +119,13 @@ public class PartidosAdmin {
              if (existeVisit == false) {   // Si no existía el visitante
 
                 if (partido.resultado == ResultadoEnum.H) { // Si gano el local
-                    listaEquipos.add(new EquipoPuntaje(partido.getVisitante(), partido.getGolesVisitante(), partido.getGolesVisitante(), 0, 1, 0));
+                    listaEquipos.add(new EquipoPuntaje(partido.getVisitante(), partido.getGolesVisitante(), partido.getGolesVisitante(), 0, 1, 0,0));
                 } else {
                     if (partido.resultado == ResultadoEnum.A) { // Si gano el visitante
-                        listaEquipos.add(new EquipoPuntaje(partido.getVisitante(), partido.getGolesVisitante(), partido.getGolesVisitante(), 1, 0, 0));
+                        listaEquipos.add(new EquipoPuntaje(partido.getVisitante(), partido.getGolesVisitante(), partido.getGolesVisitante(), 1, 0, 0, 0));
                     } else {
                         if (partido.resultado == ResultadoEnum.D) { // Si hubo empate
-                            listaEquipos.add(new EquipoPuntaje(partido.getVisitante(), partido.getGolesVisitante(), partido.getGolesVisitante(), 0, 0, 0));
+                            listaEquipos.add(new EquipoPuntaje(partido.getVisitante(), partido.getGolesVisitante(), partido.getGolesVisitante(), 0, 0, 0, 0));
                         }
                     }
 
@@ -232,12 +232,15 @@ public class PartidosAdmin {
         }
         this.listarEquipos();
     }
-
+    
     // Devuelve en orden descendente los equipos junto con su puntaje.
     public List<EquipoPuntaje> tablaDePosiciones() {
         this.listarEquipos();
-        listaEquipos.sort(new GolesAFavorComparator());
+        for (EquipoPuntaje listaEquipo : listaEquipos) {
+            listaEquipo.setPuntajeFinal((listaEquipo.getPartGanados()*3)+listaEquipo.getPartEmpatados());
+        }
+        listaEquipos.sort(new EquipoPuntajeFinalComparator());
         return this.listaEquipos;
     }
-
+    
 }
