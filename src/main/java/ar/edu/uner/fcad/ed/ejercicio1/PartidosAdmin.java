@@ -41,7 +41,17 @@ public class PartidosAdmin {
     
     // Devuelve el equipo que más ganó de local.
     public Equipo fuerteDeLocal() {
-        return null;
+        List<EquiposDeLocal> aux = calcularVicLocal();
+        int maxVictorias = 0;
+        Equipo equipoMax = null;
+        
+        for (EquiposDeLocal equiposDeLocal : aux) {
+            if(equiposDeLocal.getVictoriasLocal()>maxVictorias){
+                maxVictorias = equiposDeLocal.getVictoriasLocal();
+                equipoMax = equiposDeLocal.getEquipo();
+            }
+        }
+        return equipoMax;
     }
     
     // Devuelve el equipo que más goles recibió.
@@ -58,7 +68,8 @@ public class PartidosAdmin {
         boolean existeLocal = false;
         boolean existeVisit = false;
         for (Partido partido : listaPartidos) {
-            if (!listaEquipos.isEmpty()) {
+            existeLocal = false;
+            existeVisit = false;
                 for (EquipoPuntaje equipoPuntaje : listaEquipos) {  // PARA EL LOCAL
                     if (equipoPuntaje.getEquipo() == partido.getLocal()) {  // Ya que no se repiten los objetos equipo, verifico por direccion de memoria
                         existeLocal = true;
@@ -66,6 +77,7 @@ public class PartidosAdmin {
                         equipoPuntaje.setGolesAfavor(equipoPuntaje.getGolesAfavor() + partido.getGolesLocal()); // goles a favor
                         equipoPuntaje.setGolesRecibidos(equipoPuntaje.getGolesRecibidos() + partido.getGolesVisitante()); // goles recibidos
                         if (partido.resultado == ResultadoEnum.H) { // Si gano el local
+                            
                             equipoPuntaje.setPartGanados(equipoPuntaje.getPartGanados() + 1);
                         } else {
                             if (partido.resultado == ResultadoEnum.A) { // Si gano el visitante
@@ -80,7 +92,7 @@ public class PartidosAdmin {
                     }
 
                 }
-            }
+            
             if (existeLocal == false) {   // Si no existía el local
 
                 if (partido.resultado == ResultadoEnum.H) { // Si gano el local
@@ -207,7 +219,7 @@ public class PartidosAdmin {
                             partidoAux = new Partido(LocalDate.of(anio, Month.of(mes), dia), equipoAuxLocal, equipoAuxVisit, golesLocal, golesVisitante, ResultadoEnum.A);
                         } else {
                             if (matcher.group(8).equals("H")) {
-                                partidoAux = new Partido(LocalDate.of(anio, Month.of(mes), dia), equipoAuxLocal, equipoAuxVisit, golesLocal, golesVisitante, ResultadoEnum.A);
+                                partidoAux = new Partido(LocalDate.of(anio, Month.of(mes), dia), equipoAuxLocal, equipoAuxVisit, golesLocal, golesVisitante, ResultadoEnum.H);
                             }
                         }
                     }
@@ -243,4 +255,28 @@ public class PartidosAdmin {
         return this.listaEquipos;
     }
     
+    public List<EquiposDeLocal> calcularVicLocal(){
+        List<EquiposDeLocal> locales = new ArrayList<EquiposDeLocal>();
+      
+        
+        for (EquipoPuntaje listaEquipo : listaEquipos) {
+        locales.add( new EquiposDeLocal(listaEquipo.getEquipo(),0));
+        }
+        
+        for (Partido listaPartido : listaPartidos) {
+            for (EquiposDeLocal locale : locales) {
+                
+                if((locale.getEquipo().equals(listaPartido.getLocal()))){
+                    if(listaPartido.getResultado()==ResultadoEnum.H){
+                    
+                   locale.setVictoriasLocal(locale.getVictoriasLocal()+1);
+                    }
+                     
+                    
+                }
+            }
+        }
+        
+        return locales;
+    }
 }
