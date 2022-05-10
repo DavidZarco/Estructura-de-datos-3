@@ -27,7 +27,7 @@ public class ClienteSteque {
         System.out.println(pila.toString());
         System.out.println("Aplicamos enqueue");
         pila.enqueue(12);
-        System.out.println("Tope:"+pila.top());
+        System.out.println("Pila:"+pila);
         System.out.println("Aplicamos el metodo makeEmpty para vaciar la pila");
         pila.makeEmpty();
         if(pila.isEmpty()){

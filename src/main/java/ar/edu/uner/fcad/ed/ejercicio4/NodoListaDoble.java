@@ -46,7 +46,7 @@ public class NodoListaDoble<T>{
 
     @Override
     public String toString() {
-        return "" + elemento;
+        return "[" + elemento + "]";
     }
 
     @Override

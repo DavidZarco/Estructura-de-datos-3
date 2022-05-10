@@ -25,7 +25,16 @@ public class Steque<T> implements StequeInterfaz<T> {
     }
     
     public void enqueue(T elemento) {
-        push(elemento);    
+        NodoLista <T> NodoPorAgregar = new NodoLista(elemento);
+        if(isEmpty()){
+            tope.setSiguiente(NodoPorAgregar);   
+        }else{
+        NodoLista<T> nodoActual = tope;    
+        while(nodoActual.getSiguiente()!=null){
+            nodoActual = nodoActual.getSiguiente();
+        }    
+        nodoActual.setSiguiente(NodoPorAgregar);
+        }     
     }
 
     @Override
